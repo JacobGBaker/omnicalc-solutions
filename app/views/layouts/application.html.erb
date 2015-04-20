@@ -22,22 +22,79 @@
 
 </head>
 <body>
-        <div>
-          <a href="/word_count/new">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fa fa-calculator"></i> Omnicalc</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/word_count/new" class="hidden-md hidden-lg">
+              <i class="fa fa-book"></i>
+              Word Count
+            </a>
+          </li>
+          <li>
+            <a href="/loan_payment/new" class="hidden-md hidden-lg">
+              <i class="fa fa-money"></i>
+              Loan Payment
+            </a>
+          </li>
+          <li>
+            <a href="/time_between/new" class="hidden-md hidden-lg">
+              <i class="fa fa-clock-o"></i>
+              Time Between
+            </a>
+          </li>
+          <li>
+            <a href="/descriptive_statistics/new" class="hidden-md hidden-lg">
+              <i class="fa fa-bar-chart"></i>
+              Descriptive Statistics
+            </a>
+          </li>
+        </ul>
+
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <div class="list-group hidden-sm hidden-xs">
+          <a href="/word_count/new" class="list-group-item">
+            <i class="fa fa-book"></i>
             Word Count
           </a>
-          <a href="/loan_payment/new">
+          <a href="/loan_payment/new" class="list-group-item">
+            <i class="fa fa-money"></i>
             Loan Payment
           </a>
-          <a href="/time_between/new">
+          <a href="/time_between/new" class="list-group-item">
+            <i class="fa fa-clock-o"></i>
             Time Between
           </a>
-          <a href="/descriptive_statistics/new">
+          <a href="/descriptive_statistics/new" class="list-group-item">
+            <i class="fa fa-bar-chart"></i>
             Descriptive Statistics
           </a>
         </div>
-
+      </div>
+      <div class="col-md-9">
         <%= yield %>
+      </div>
     </div>
   </div>
 </body>

@@ -1,10 +1,23 @@
-<h3>New Descriptive Statistics Calculation</h3>
-<form action="/descriptive_statistics/results">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">New Descriptive Statistics Calculation</h3>
+  </div>
+  <div class="panel-body">
+    <form action="/descriptive_statistics/results" class="form-horizontal">
 
-  <label for="list_of_numbers">Numbers</label>
-  <textarea name="list_of_numbers" placeholder="Enter your numbers (separated by spaces)" id="list_of_numbers"></textarea>
+      <div class="form-group">
+        <label for="list_of_numbers" class="col-sm-2 control-label">Numbers</label>
+        <div class="col-sm-10">
+          <textarea name="list_of_numbers" class="form-control" rows="3" placeholder="Enter your numbers (separated by spaces)" id="list_of_numbers"></textarea>
+        </div>
+      </div>
 
-  <button type="submit">Submit</button>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+      </div>
 
-
-</form>
+    </form>
+  </div>
+</div>

@@ -13,13 +13,14 @@ class CalculationsController < ApplicationController
         # The special word the user input is in the string @special_word.
         # ========================================================
 
-        @word_count = "Replace this string with your answer"
+        @word_count = @text.split.length
 
-        @character_count_with_spaces = "Replace this string with your answer"
+        @character_count_with_spaces = @text.length
 
-        @character_count_without_spaces = "Replace this string with your answer"
-
-        @occurrences = "Replace this string with your answer"
+        @character_count_without_spaces = @text.gsub(" ","").length
+        sanitized_text = @text.downcase
+        sanitized_word = @special_word.downcase
+        @occurrences = sanitized_text.split.count(sanitized_word)
         render 'word_count'
     end
 
@@ -42,7 +43,7 @@ class CalculationsController < ApplicationController
         rate_per_period = @apr / 100 / 12
         number_periods = @years * 12
 
-        @monthly_payment = "Replace this string with your answer"
+        @monthly_payment = (rate_per_period * present_value)/(1 - (1 + rate_per_period)**(-number_periods))
     end
 
     def time_between_form
@@ -58,16 +59,15 @@ class CalculationsController < ApplicationController
         # The start time is in the Time @starting.
         # The end time is in the Time @ending.
         # The number of years the user input is in the integer @years.
-        # The principal value the user input is in the decimal @principal.
         # =====================================================
 
-        @seconds = "Replace this string with your answer"
-        @minutes = "Replace this string with your answer"
-        @hours = "Replace this string with your answer"
-        @days = "Replace this string with your answer"
-        @weeks = "Replace this string with your answer"
-        @months = "Replace this string with your answer"
-        @years = "Replace this string with your answer"
+        @seconds = @ending - @starting
+        @minutes = @seconds/1.minutes
+        @hours = @seconds/1.hours
+        @days = @seconds/1.days
+        @weeks = @seconds/1.weeks
+        @months = @seconds/1.months
+        @years = @seconds/1.years
         render 'time_between'
     end
 
@@ -83,25 +83,38 @@ class CalculationsController < ApplicationController
         # The numbers the user input are in the array @numbers.
         # =====================================================
 
-        @sorted_numbers = "Replace this string with your answer"
+        @sorted_numbers = @numbers.sort
 
-        @count = "Replace this string with your answer"
+        @count = @numbers.count
 
-        @minimum = "Replace this string with your answer"
+        @minimum = @numbers.min
 
-        @maximum = "Replace this string with your answer"
+        @maximum = @numbers.max
 
-        @range = "Replace this string with your answer"
+        @range = @maximum - @minimum
 
-        @median = "Replace this string with your answer"
+        if @count.odd?
+          @median = @sorted_numbers[@count / 2]
+        else
+          @median = (@sorted_numbers[(@count / 2) - 1] + @sorted_numbers[(@count / 2)]) / 2
+        end
 
-        @sum = "Replace this string with your answer"
+        @sum = @numbers.sum
 
-        @mean = "Replace this string with your answer"
+        @mean = @sum / @count
 
-        @variance = "Replace this string with your answer"
+        squared_differences = []
 
-        @standard_deviation = "Replace this string with your answer"
+        @numbers.each do |num|
+          difference = num - @mean
+          squared_difference = difference ** 2
+          squared_differences.push(squared_difference)
+        end
+
+        @variance = squared_differences.sum / @count
+
+        @standard_deviation = Math.sqrt(@variance)
+
 
         render  'descriptive_statistics'
     end
